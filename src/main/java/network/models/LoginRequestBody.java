@@ -1,5 +1,9 @@
 package network.models;
 
+/**
+ * A response body for login request.
+ * Contains credentials of the user being logged in.
+ */
 public class LoginRequestBody {
     private String email;
     private String password;
