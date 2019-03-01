@@ -25,7 +25,7 @@ public class Activity {
 
     /**
      * Name of an entity which initiated the activity. May be a file name or an application name.
-     * Depends on @{code type}.
+     * Depends on {@code type}.
      */
     private String senderName;
 
