@@ -14,7 +14,7 @@ public interface PersistentActivitiesStorage {
      * from those stored in a persistent storage.
      * @param maxBatchSize maximum size of the returned list.
      * @return a sublist of currently stored activities with the given size, or smaller (if less activities
-     * are currently stored).
+     * are currently stored). No structural changes will ever be performed on the returned list.
      */
     List<Activity> getActivitiesBatch(int maxBatchSize);
 
