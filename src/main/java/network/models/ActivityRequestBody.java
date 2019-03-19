@@ -1,7 +1,5 @@
 package network.models;
 
-import models.Activity;
-
 import java.util.List;
 
 public class ActivityRequestBody {

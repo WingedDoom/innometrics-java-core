@@ -19,7 +19,7 @@ InnometricsJavaCore requires clients to provide following platform specific func
 ## Installation
 InnometricsJavaCore is intended to be used by other Innometrics tracking clients written in Java. Here is how to install it using Gradle and Git Sublidules: 
 1. In your project root directory create a git submodule with this repository.
-2. In your `build.gradle` `dependencies` section add: `implementation project(':innometrics-Java-core')`
+2. In your `build.gradle` `dependencies` section add: `implementation project(':innometrics-java-core')`
 
 ## Questions
 Contact me in [Telegram](t.me/khabiroff)
