@@ -21,21 +21,29 @@ import java.util.stream.Collectors;
  * submit them to an Innometrics server.
  */
 public class InnometricsCoreRepository {
-    private static final String DEFAULT_BASE_URL = "";
     private static final int SUBMISSION_BATCH_SIZE = 100;
 
     private AuthTokenStorage tokenStorage;
     private PersistentActivitiesStorage activitiesStorage;
     private InnometricsApi innometricsApiService;
+    private String currentBaseURL;
 
+    /**
+     * Creates a repository with given token and activities storage. Sets base URL to the default value
+     * taken from {@link Constants}.
+     * @param tokenStorage token storage that will provide the repository with an access token to the API.
+     * @param activitiesStorage activities storage that will let the repository to store activities.
+     */
     public InnometricsCoreRepository(AuthTokenStorage tokenStorage, PersistentActivitiesStorage activitiesStorage) {
         this.tokenStorage = tokenStorage;
         this.activitiesStorage = activitiesStorage;
-        setBaseURL(DEFAULT_BASE_URL);
+        setBaseURL(Constants.DEFAULT_BASE_URL);
     }
 
     /**
      * Sets a custom server base URL to make requests to.
+     * This action usually would invalidate your API access token, so make sure to
+     * call {@code logout} in advance.
      * @param baseURL new custom base URL of an Innometrics API providing server.
      */
     public void setBaseURL(String baseURL) {
@@ -44,9 +52,15 @@ public class InnometricsCoreRepository {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         innometricsApiService = retrofit.create(InnometricsApi.class);
+        currentBaseURL = baseURL;
+
     }
 
     // Core API
+
+    public String getCurrentBaseURL() {
+        return currentBaseURL;
+    }
 
     /**
      * Attempts to authorize a user with given credentials. The method is executed synchronously.
@@ -91,6 +105,9 @@ public class InnometricsCoreRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        // delete the token
+        tokenStorage.setToken(null);
     }
 
     /**
@@ -147,7 +164,7 @@ public class InnometricsCoreRepository {
 
         int responseCode = innometricsApiService.submitActivity(token, submissionBody).execute().code();
         if (responseCode != 201) {
-            throw new Exception("Could not create activities");
+            throw new Exception("Could not create activities.");
         }
     }
 }
