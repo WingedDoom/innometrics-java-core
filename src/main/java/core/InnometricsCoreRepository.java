@@ -6,6 +6,7 @@ import network.models.ActivityRequestBody;
 import network.models.ActivityRequestBodyItem;
 import network.models.LoginRequestBody;
 import network.models.LoginResponseBody;
+import okhttp3.ResponseBody;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -81,6 +82,7 @@ public class InnometricsCoreRepository {
                 } else {
                     throw new Exception("Unknown error occurred");
                 }
+                break;
             case 400:
                 throw new Exception("Incorrect data format. Probably the server API changed?");
             case 401:
