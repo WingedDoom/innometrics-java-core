@@ -54,8 +54,10 @@ public class NetworkAddressesProvider {
             switch (addressType) {
                 case IP:
                     address = lanIp.toString().replaceAll("^/+", "");
+                    break;
                 case MAC:
                     address = getMacAddress(lanIp);
+                    break;
             }
         } catch (Exception ex) {
             ex.printStackTrace();
