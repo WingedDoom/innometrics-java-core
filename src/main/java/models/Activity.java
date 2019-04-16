@@ -1,5 +1,7 @@
 package models;
 
+import util.NetworkAddressesProvider;
+
 import java.util.Date;
 
 /**
@@ -38,8 +40,8 @@ public class Activity {
         type = null;
         startDate = new Date();
         endDate = new Date();
-        ipAddress = null;
-        macAddress = null;
+        ipAddress = NetworkAddressesProvider.getIpAddress();
+        macAddress = NetworkAddressesProvider.getMacAddress();
         value = null;
         senderName = null;
         platformPrefix = "";

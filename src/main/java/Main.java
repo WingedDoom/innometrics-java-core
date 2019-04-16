@@ -15,6 +15,7 @@ public class Main {
         InnometricsApi innometricsApi = retrofit.create(InnometricsApi.class);
 
         try {
+
             Response<Void> response = innometricsApi.logout("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTgwMzg4MzUsImlhdCI6MTU1NTQ0NjgzNSwic3ViIjoiNWM5ZDM3MTQ1ZjYyN2Q2OTVmODAwNGE2In0.P7V2ID5WUKE3TK8uDTSwzyM0h2DfPGpAugr4CxgzqcY").execute();
             System.out.println(response.code());
             if (response.isSuccessful()) {
